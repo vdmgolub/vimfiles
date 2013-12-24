@@ -25,3 +25,8 @@ syntax on
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
 let mapleader=","
+
+" ================ Interface ====================
+
+color railscasts2
+set guifont=Menlo:h16
