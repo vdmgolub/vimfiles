@@ -26,6 +26,12 @@ syntax on
 " That means all \x commands turn into ,x
 let mapleader=","
 
+" ================ Turn Off Swap Files ==============
+
+set noswapfile
+set nobackup
+set nowb
+
 " ================ Interface ====================
 
 color railscasts2
