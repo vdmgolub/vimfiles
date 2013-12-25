@@ -32,6 +32,16 @@ set noswapfile
 set nobackup
 set nowb
 
+" ================ NeoBundle ==============
+
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+filetype plugin indent on
+NeoBundleCheck
+
 " ================ Interface ====================
 
 color railscasts2
