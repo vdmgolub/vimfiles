@@ -64,6 +64,7 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 color railscasts2
 set guifont=Menlo:h16
 set list listchars=tab:>-,trail:·
+set title
 
 set nowrap       " Don't wrap lines
 set linebreak    " Wrap lines at convenient points
@@ -80,10 +81,11 @@ set expandtab
 
 " ================ Key mappings ====================
 
-nnoremap <leader>n :NERDTreeTabsToggle<CR>
-nnoremap <leader>b :BufExplorer<CR>
+nnoremap <leader>n :NERDTreeTabsToggle<cr>
+nnoremap <leader>b :BufExplorer<cr>
 
-inoremap jj <ESC>
+nnoremap <silent><leader><space> :noh<cr>
+inoremap jj <esc>
 
 " ================ Navigation and scrolling ====================
 
@@ -100,3 +102,21 @@ set ruler
 set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+" ================ Completion =======================
+
+set wildmode=list:longest
+set wildmenu                " Enable ctrl-n and ctrl-p to scroll thru matches
+
+" ================ Search =======================
+
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <tab> %
+vnoremap <tab> %
