@@ -39,10 +39,24 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'scrooloose/nerdtree'
+
 filetype plugin indent on
 NeoBundleCheck
+
+" ================ Plugins settings ==============
+
+" NERDTree
+let NERDTreeMinimalUI  = 1
+let NERDTreeShowHidden = 1
+let g:NERDTreeWinSize  = 40  " Window size
+let NERDTreeDirArrows  = 0   " No arrows, just | + and ~
 
 " ================ Interface ====================
 
 color railscasts2
 set guifont=Menlo:h16
+
+" ================ Key mappings ====================
+
+nnoremap <leader>n :NERDTreeToggle<CR>
