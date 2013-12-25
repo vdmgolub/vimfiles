@@ -53,6 +53,7 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ervandew/supertab'
+NeoBundle 'vdmgolub/vim-colors-railscasts'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -99,7 +100,7 @@ let g:ctrlp_switch_buffer = 0
 
 " ================ Interface ====================
 
-color railscasts " https://github.com/jgdavey/vim-railscasts
+color railscasts
 set guifont=Meslo\ LG\ S\ for\ Powerline:h16
 set list listchars=tab:>-,trail:·
 set title
