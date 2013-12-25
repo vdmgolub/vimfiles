@@ -68,3 +68,14 @@ set guifont=Menlo:h16
 
 nnoremap <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <leader>b :BufExplorer<CR>
+
+inoremap jj <ESC>
+
+" ================ Navigation ====================
+
+nnoremap j gj
+nnoremap k gk
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
