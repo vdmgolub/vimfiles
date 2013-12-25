@@ -50,6 +50,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -141,6 +143,7 @@ inoremap jj <esc>
 " <leader>ig :IndentGuidesToggle<cr> - Show/hide indentation levels
 " gcc - comment/uncomment current line
 " gc - comment/uncomment selection (or target - gcap - paragraph)
+" TODO: add description for surround.vim
 
 " ================ Navigation and scrolling ====================
 
