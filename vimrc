@@ -63,6 +63,10 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 
 color railscasts2
 set guifont=Menlo:h16
+set list listchars=tab:>-,trail:·
+
+set nowrap       " Don't wrap lines
+set linebreak    " Wrap lines at convenient points
 
 " ================ Indentation ======================
 
