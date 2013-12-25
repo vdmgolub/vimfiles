@@ -52,6 +52,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'ervandew/supertab'
 
 filetype plugin indent on
 NeoBundleCheck
