@@ -56,6 +56,7 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'vdmgolub/vim-colors-railscasts'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'matchit.zip'
 
 filetype plugin indent on
 NeoBundleCheck
