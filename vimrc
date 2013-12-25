@@ -55,6 +55,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'vdmgolub/vim-colors-railscasts'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'majutsushi/tagbar'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -136,7 +137,9 @@ nnoremap <leader>e :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
 nnoremap <leader>a :Ag<space>
 nnoremap <silent><leader>t :CtrlP<cr>
+nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
+nnoremap <leader>n :TagbarToggle<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
