@@ -89,6 +89,12 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+" ================ Folds ============================
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
 " ================ Key mappings ====================
 
 nnoremap <leader>n :NERDTreeTabsToggle<cr>
@@ -108,6 +114,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 set ruler
 set scrolloff=8         " Start scrolling when we're 8 lines away from margins
