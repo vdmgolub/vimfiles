@@ -40,6 +40,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'bufexplorer.zip'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -60,3 +61,4 @@ set guifont=Menlo:h16
 " ================ Key mappings ====================
 
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>b :BufExplorer<CR>
