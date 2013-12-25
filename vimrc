@@ -40,6 +40,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'bufexplorer.zip'
 
 filetype plugin indent on
@@ -53,6 +54,11 @@ let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 40  " Window size
 let NERDTreeDirArrows  = 0   " No arrows, just | + and ~
 
+" NERDTreeTabs
+let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup
+let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
+
+
 " ================ Interface ====================
 
 color railscasts2
@@ -60,5 +66,5 @@ set guifont=Menlo:h16
 
 " ================ Key mappings ====================
 
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <leader>b :BufExplorer<CR>
