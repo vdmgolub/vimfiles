@@ -54,7 +54,7 @@ NeoBundleCheck
 " NERDTree
 let NERDTreeMinimalUI  = 1
 let NERDTreeShowHidden = 1
-let g:NERDTreeWinSize  = 40  " Window size
+let g:NERDTreeWinSize  = 30  " Window size
 let NERDTreeDirArrows  = 0   " No arrows, just | + and ~
 
 " NERDTreeTabs
@@ -67,12 +67,13 @@ let g:airline_powerline_fonts = 1
 
 " ================ Interface ====================
 
-color railscasts2
+color railscasts " https://github.com/jgdavey/vim-railscasts
 set guifont=Meslo\ LG\ S\ for\ Powerline:h16
 set list listchars=tab:>-,trail:·
 set title
 set colorcolumn=80
 set cursorline
+set guioptions-=L
 
 set nowrap       " Don't wrap lines
 set linebreak    " Wrap lines at convenient points
