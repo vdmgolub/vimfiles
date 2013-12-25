@@ -64,6 +64,16 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 color railscasts2
 set guifont=Menlo:h16
 
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
 " ================ Key mappings ====================
 
 nnoremap <leader>n :NERDTreeTabsToggle<CR>
