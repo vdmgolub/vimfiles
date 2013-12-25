@@ -48,6 +48,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -130,6 +131,8 @@ nnoremap <silent><leader>t :CtrlP<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
+
+" nnoremap <leader>ig :IndentGuidesToggle<cr> " default mapping
 
 " ================ Navigation and scrolling ====================
 
