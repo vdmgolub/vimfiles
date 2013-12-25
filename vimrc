@@ -124,6 +124,8 @@ set nofoldenable        "dont fold by default
 
 " ================ Key mappings ====================
 
+au FocusLost * :wa " Save all changes if focus lost
+
 nnoremap <leader>n :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
 nnoremap <leader>a :Ag<space>
