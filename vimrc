@@ -46,6 +46,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'scrooloose/syntastic'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -65,6 +66,9 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 " Vim-Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+
+" Syntastic
+let g:syntastic_check_on_open=1
 
 " ================ Interface ====================
 
