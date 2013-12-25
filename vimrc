@@ -45,6 +45,7 @@ NeoBundle 'bufexplorer.zip'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'rking/ag.vim'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -92,6 +93,7 @@ set expandtab
 
 nnoremap <leader>n :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
+nnoremap <leader>a :Ag<space>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
