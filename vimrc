@@ -42,6 +42,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'bufexplorer.zip'
+NeoBundle 'bling/vim-airline'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -58,11 +59,14 @@ let NERDTreeDirArrows  = 0   " No arrows, just | + and ~
 let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup
 let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 
+" Vim-Airline
+set laststatus=2
+let g:airline_powerline_fonts = 1
 
 " ================ Interface ====================
 
 color railscasts2
-set guifont=Menlo:h16
+set guifont=Meslo\ LG\ S\ for\ Powerline:h16
 set list listchars=tab:>-,trail:·
 set title
 
