@@ -43,6 +43,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'bufexplorer.zip'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-endwise'
 
 filetype plugin indent on
 NeoBundleCheck
