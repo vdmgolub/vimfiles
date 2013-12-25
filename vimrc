@@ -71,6 +71,8 @@ color railscasts2
 set guifont=Meslo\ LG\ S\ for\ Powerline:h16
 set list listchars=tab:>-,trail:·
 set title
+set colorcolumn=80
+set cursorline
 
 set nowrap       " Don't wrap lines
 set linebreak    " Wrap lines at convenient points
