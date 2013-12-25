@@ -49,6 +49,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'tpope/vim-commentary'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -135,7 +136,11 @@ nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
 
-" nnoremap <leader>ig :IndentGuidesToggle<cr> " default mapping
+" ================ Plugins' default key mappings ====================
+
+" <leader>ig :IndentGuidesToggle<cr> - Show/hide indentation levels
+" gcc - comment/uncomment current line
+" gc - comment/uncomment selection (or target - gcap - paragraph)
 
 " ================ Navigation and scrolling ====================
 
