@@ -130,6 +130,7 @@ nnoremap <leader>n :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
 nnoremap <leader>a :Ag<space>
 nnoremap <silent><leader>t :CtrlP<cr>
+nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
