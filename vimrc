@@ -71,7 +71,7 @@ nnoremap <leader>b :BufExplorer<CR>
 
 inoremap jj <ESC>
 
-" ================ Navigation ====================
+" ================ Navigation and scrolling ====================
 
 nnoremap j gj
 nnoremap k gk
@@ -79,3 +79,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+set ruler
+set scrolloff=8         " Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
