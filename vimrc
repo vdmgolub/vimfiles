@@ -54,6 +54,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'vdmgolub/vim-colors-railscasts'
+NeoBundle 'tpope/vim-fugitive'
 
 filetype plugin indent on
 NeoBundleCheck
