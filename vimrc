@@ -105,10 +105,10 @@ let g:ctrlp_switch_buffer = 0
 
 color railscasts
 set guifont=Meslo\ LG\ S\ for\ Powerline:h16
-set list listchars=tab:>-,trail:·
+set list listchars=tab:▸\ ,trail:·,eol:¬
 set title
 set cursorline
-set guioptions-=L
+set guioptions-=L " Remove left scroll bar
 execute 'set colorcolumn=' . join(range(81,335), ',')
 
 set nowrap       " Don't wrap lines
@@ -141,6 +141,7 @@ nnoremap <silent><leader>t :CtrlP<cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <leader>n :TagbarToggle<cr>
+nnoremap <leader>l :set list!<CR>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
