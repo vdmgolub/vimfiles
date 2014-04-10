@@ -60,6 +60,7 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle "MarcWeber/vim-addon-mw-utils" " snipmate dependency
 NeoBundle "tomtom/tlib_vim" " snipmate dependency
 NeoBundle 'garbas/vim-snipmate'
@@ -87,6 +88,7 @@ let g:airline_powerline_fonts = 1
 
 " Syntastic
 let g:syntastic_check_on_open=1
+let g:syntastic_html_checkers = ['handlebars']
 
 " CtrlP
 if executable('ag')
