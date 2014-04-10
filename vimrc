@@ -60,6 +60,7 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'jiangmiao/auto-pairs'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -150,7 +151,7 @@ nnoremap <silent><leader>t :CtrlP<cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <leader>n :TagbarToggle<cr>
-nnoremap <leader>l :set list!<CR>
+nnoremap <silent><leader>l :set list!<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
