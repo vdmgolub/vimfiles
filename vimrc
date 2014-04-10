@@ -60,6 +60,10 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle "MarcWeber/vim-addon-mw-utils" " snipmate dependency
+NeoBundle "tomtom/tlib_vim" " snipmate dependency
+NeoBundle 'garbas/vim-snipmate'
+NeoBundle "honza/vim-snippets"
 NeoBundle 'jiangmiao/auto-pairs'
 
 filetype plugin indent on
