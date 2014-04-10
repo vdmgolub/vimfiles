@@ -111,6 +111,10 @@ let g:gist_show_privates = 1
 let g:gist_detect_filetype = 1
 let g:gist_clip_command = 'pbcopy'
 
+" Indent Guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
 " ================ Interface ====================
 
 color railscasts
