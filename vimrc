@@ -65,6 +65,7 @@ NeoBundle "MarcWeber/vim-addon-mw-utils" " snipmate dependency
 NeoBundle "tomtom/tlib_vim" " snipmate dependency
 NeoBundle 'garbas/vim-snipmate'
 NeoBundle "honza/vim-snippets"
+NeoBundle "vdmgolub/vim-snippets", { 'name': 'my-snippets' }
 NeoBundle 'jiangmiao/auto-pairs'
 
 filetype plugin indent on
