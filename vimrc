@@ -35,7 +35,7 @@ set nowb
 " ================ NeoBundle ==============
 
 set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -70,6 +70,8 @@ NeoBundle 'jiangmiao/auto-pairs'
 
 filetype plugin indent on
 NeoBundleCheck
+
+call neobundle#end()
 
 " ================ Plugins settings ==============
 
