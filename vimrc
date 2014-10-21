@@ -67,6 +67,7 @@ NeoBundle 'garbas/vim-snipmate'
 NeoBundle "honza/vim-snippets"
 NeoBundle "vdmgolub/vim-snippets", { 'name': 'my-snippets' }
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'thoughtbot/vim-rspec'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -124,6 +125,10 @@ let g:gist_clip_command = 'pbcopy'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+" Vim-Rspec
+let g:rspec_command = "!bin/rspec --no-color --format p {spec}"
+let g:rspec_runner = "os_x_iterm"
+
 " ================ Interface ====================
 
 color railscasts
@@ -168,6 +173,8 @@ nnoremap <silent><leader>l :set list!<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
+nnoremap <leader>gt :w<cr>:call RunCurrentSpecFile()<cr>
+nnoremap <leader>g :w<cr>:call RunNearestSpec()<cr>
 
 " ================ Plugins' default key mappings ====================
 
