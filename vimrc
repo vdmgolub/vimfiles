@@ -80,7 +80,7 @@ call neobundle#end()
 let NERDTreeMinimalUI  = 1
 let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30  " Window size
-let NERDTreeDirArrows  = 0   " No arrows, just | + and ~
+let NERDTreeDirArrows  = 1
 
 " NERDTreeTabs
 let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup
@@ -136,10 +136,10 @@ let g:solarized_hitrail=1
 
 " ================ Interface ====================
 
-set guifont=Meslo\ LG\ S\ for\ Powerline:h16
-set list listchars=tab:▸\ ,trail:·,eol:¬
 set background=dark
 color solarized
+set guifont=Inconsolata-dz\ for\ Powerline:h16
+set list listchars=tab:▸\ ,trail:·
 set t_Co=256
 set title
 set cursorline
