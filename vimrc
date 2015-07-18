@@ -53,7 +53,7 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'vdmgolub/vim-colors-railscasts'
+NeoBundle 'vdmgolub/vim-colors-solarized'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'matchit.zip'
@@ -129,11 +129,18 @@ let g:indent_guides_guide_size = 1
 let g:rspec_command = "!bin/rspec --no-color --format p {spec}"
 let g:rspec_runner = "os_x_iterm"
 
+" Solarized
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_hitrail=1
+
 " ================ Interface ====================
 
-color railscasts
 set guifont=Meslo\ LG\ S\ for\ Powerline:h16
 set list listchars=tab:▸\ ,trail:·,eol:¬
+set background=dark
+color solarized
+set t_Co=256
 set title
 set cursorline
 set guioptions-=L " Remove left scroll bar
