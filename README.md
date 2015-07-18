@@ -8,6 +8,12 @@ Clone this repo:
 $ git clone https://github.com/vdmgolub/vimfiles.git ~/.vim
 ```
 
+Symlink vimrc to home directory:
+
+```bash
+$ ln -s ~/.vim/vimrc ~/.vimrc
+```
+
 Install [Neobundle](https://github.com/Shougo/neobundle.vim)
 
 ```bash
