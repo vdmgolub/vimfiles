@@ -174,6 +174,7 @@ au FocusLost * :wa " Save all changes if focus lost
 nnoremap <leader>e :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
 nnoremap <leader>a :Ag<space>
+nnoremap <leader>aa :Ag<space><c-r><c-w><cr>
 nnoremap <silent><leader>t :CtrlP<cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
@@ -184,6 +185,10 @@ nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
 nnoremap <leader>gt :w<cr>:call RunCurrentSpecFile()<cr>
 nnoremap <leader>g :w<cr>:call RunNearestSpec()<cr>
+nnoremap <silent><leader>p :let @+=expand('%:p')<cr>
+nnoremap <silent><leader>pl :let @+=expand('%:p') . ':' . line('.')<cr>
+noremap <silent><leader>ph :Gbrowse<cr>
+noremap <silent><leader>pg :Gbrowse!<cr>
 nmap <c-g> :bnext<cr>
 nmap <c-f> :bprevious<cr>
 nmap <c-n> :bdelete<cr>
