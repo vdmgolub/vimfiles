@@ -67,6 +67,7 @@ NeoBundle 'garbas/vim-snipmate'
 NeoBundle "honza/vim-snippets"
 NeoBundle "vdmgolub/vim-snippets", { 'name': 'my-snippets' }
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'thoughtbot/vim-rspec'
 
 filetype plugin indent on
