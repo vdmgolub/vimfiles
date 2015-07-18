@@ -90,6 +90,7 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 " Vim-Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Syntastic
 let g:syntastic_check_on_open=1
@@ -183,6 +184,9 @@ nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
 nnoremap <leader>gt :w<cr>:call RunCurrentSpecFile()<cr>
 nnoremap <leader>g :w<cr>:call RunNearestSpec()<cr>
+nmap <c-g> :bnext<cr>
+nmap <c-f> :bprevious<cr>
+nmap <c-n> :bdelete<cr>
 
 " ================ Plugins' default key mappings ====================
 
