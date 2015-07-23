@@ -20,6 +20,13 @@ Install [Neobundle](https://github.com/Shougo/neobundle.vim)
 $ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 ```
 
-Running vim for the first time will prompt to install all plugins - answer 'y'.
+Download and install font from [here](https://github.com/powerline/fonts/tree/master/InconsolataDz).
+It is patched to show special characters.
+
+Running command to install all plugins:
+
+```bash
+$ vim +NeoBundleInstall +qall
+```
 
 Enjoy :)
