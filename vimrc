@@ -34,46 +34,46 @@ set nowb
 
 " ================ NeoBundle ==============
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
+set packpath^=~/.vim
+packadd minpac
+call minpac#init()
+" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'bufexplorer.zip'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'vdmgolub/vim-colors-solarized'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'matchit.zip'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle "MarcWeber/vim-addon-mw-utils" " snipmate dependency
-NeoBundle "tomtom/tlib_vim" " snipmate dependency
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle "honza/vim-snippets"
-NeoBundle "vdmgolub/vim-snippets", { 'name': 'my-snippets' }
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'thoughtbot/vim-rspec'
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('jistr/vim-nerdtree-tabs')
+call minpac#add('bufexplorer.zip')
+call minpac#add('bling/vim-airline')
+call minpac#add('vim-ruby/vim-ruby')
+call minpac#add('tpope/vim-endwise')
+call minpac#add('rking/ag.vim')
+call minpac#add('scrooloose/syntastic')
+call minpac#add('kien/ctrlp.vim')
+call minpac#add('nathanaelkane/vim-indent-guides')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('ervandew/supertab')
+call minpac#add('vdmgolub/vim-colors-solarized')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('majutsushi/tagbar')
+call minpac#add('matchit.zip')
+call minpac#add('tpope/vim-markdown')
+call minpac#add('mattn/webapi-vim')
+call minpac#add('mattn/gist-vim')
+call minpac#add('mustache/vim-mustache-handlebars')
+call minpac#add("MarcWeber/vim-addon-mw-utils")
+call minpac#add("tomtom/tlib_vim")
+call minpac#add('garbas/vim-snipmate')
+call minpac#add("honza/vim-snippets")
+call minpac#add("vdmgolub/vim-snippets", { 'name': 'my-snippets' })
+call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('elixir-lang/vim-elixir')
+call minpac#add('thoughtbot/vim-rspec')
 
 filetype plugin indent on
-NeoBundleCheck
 
-call neobundle#end()
 
 " ================ Plugins settings ==============
 
