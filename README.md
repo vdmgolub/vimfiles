@@ -14,19 +14,20 @@ Symlink vimrc to home directory:
 $ ln -s ~/.vim/vimrc ~/.vimrc
 ```
 
-Install [Neobundle](https://github.com/Shougo/neobundle.vim)
+Create `pack/minpac/opt/` directory in `.vim/` and install
+[minpac](https://github.com/k-takata/minpac):
 
 ```bash
-$ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+$ git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 ```
 
 Download and install font from [here](https://github.com/powerline/fonts/tree/master/InconsolataDz).
 It is patched to show special characters.
 
-Running command to install all plugins:
+Open vim and run the following command to install/update all plugins:
 
 ```bash
-$ vim +NeoBundleInstall +qall
+:call minpac#update()
 ```
 
 Enjoy :)
