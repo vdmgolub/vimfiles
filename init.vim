@@ -44,42 +44,41 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " ================ Plugins ==============
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/bufexplorer.zip'
-Plug 'bling/vim-airline'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-endwise'
-Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
-Plug 'icymind/NeoSolarized'
-Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tpope/vim-markdown'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'albanm/vuetify-vim'
+Plug 'bling/vim-airline'
 Plug 'elixir-lang/vim-elixir'
-Plug 'thoughtbot/vim-rspec'
-Plug 'junegunn/fzf'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
+Plug 'icymind/NeoSolarized'
+Plug 'jiangmiao/auto-pairs'
 Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf'
+Plug 'junegunn/vim-easy-align'
+Plug 'leafgarland/typescript-vim'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
-Plug 'leafgarland/typescript-vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'honza/vim-snippets'
-Plug 'albanm/vuetify-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'vim-scripts/matchit.zip'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -103,27 +102,6 @@ let g:airline#extensions#tabline#enabled = 1
 " Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_html_checkers = ['handlebars']
-
-" CtrlP
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-else
-  " Fall back to using git ls-files if Ag is not available
-  let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
-endif
-
-" Default to filename searches - so that appctrl will find application
-" controller
-let g:ctrlp_by_filename = 1
-
-" Don't jump to already open window. This is annoying if you are maintaining
-" several Tab workspaces and want to open two windows into the same file.
-let g:ctrlp_switch_buffer = 0
 
 " Gist-vim
 let g:gist_post_private = 1
