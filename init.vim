@@ -58,6 +58,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'icymind/NeoSolarized'
+Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'
@@ -72,7 +73,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -195,6 +195,10 @@ noremap <silent><leader>pg :Gbrowse!<cr>
 nmap <c-g> :bnext<cr>
 nmap <c-f> :bprevious<cr>
 nmap <c-n> :bdelete<cr>
+
+" Vim-test
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
 
 " ================ Plugins' default key mappings ====================
 
