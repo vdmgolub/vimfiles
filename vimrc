@@ -32,6 +32,12 @@ set noswapfile
 set nobackup
 set nowb
 
+" ================ Runtime paths ==============
+
+" Load FZF from homebrew installation
+set runtimepath^=/usr/local/opt/fzf
+runtime plugin/fzf.vim
+
 " ================ NeoBundle ==============
 
 set packpath^=~/.vim
@@ -70,6 +76,7 @@ call minpac#add("vdmgolub/vim-snippets", { 'name': 'my-snippets' })
 call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('elixir-lang/vim-elixir')
 call minpac#add('thoughtbot/vim-rspec')
+call minpac#add('junegunn/fzf')
 call minpac#add('jremmen/vim-ripgrep')
 
 filetype plugin indent on
@@ -177,9 +184,9 @@ au FocusLost * :wa " Save all changes if focus lost
 
 nnoremap <leader>e :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
-nnoremap <silent><leader>t :CtrlP<cr>
 nnoremap <leader>a :Rg<space>
 nnoremap <leader>aa :Rg<space><c-r><c-w><cr>
+nnoremap <silent><leader>t :FZF<cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <leader>n :TagbarToggle<cr>
