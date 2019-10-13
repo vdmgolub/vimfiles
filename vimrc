@@ -47,7 +47,6 @@ call minpac#add('vim-scripts/bufexplorer.zip')
 call minpac#add('bling/vim-airline')
 call minpac#add('vim-ruby/vim-ruby')
 call minpac#add('tpope/vim-endwise')
-call minpac#add('rking/ag.vim')
 call minpac#add('scrooloose/syntastic')
 call minpac#add('kien/ctrlp.vim')
 call minpac#add('nathanaelkane/vim-indent-guides')
@@ -71,6 +70,7 @@ call minpac#add("vdmgolub/vim-snippets", { 'name': 'my-snippets' })
 call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('elixir-lang/vim-elixir')
 call minpac#add('thoughtbot/vim-rspec')
+call minpac#add('jremmen/vim-ripgrep')
 
 filetype plugin indent on
 
@@ -136,6 +136,10 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_hitrail=1
 
+" Ripgrep
+let g:rg_highlight=1
+let g:rg_root_types=['!.git']
+
 " ================ Interface ====================
 
 set background=dark
@@ -173,9 +177,9 @@ au FocusLost * :wa " Save all changes if focus lost
 
 nnoremap <leader>e :NERDTreeTabsToggle<cr>
 nnoremap <leader>b :BufExplorer<cr>
-nnoremap <leader>a :Ag<space>
-nnoremap <leader>aa :Ag<space><c-r><c-w><cr>
 nnoremap <silent><leader>t :CtrlP<cr>
+nnoremap <leader>a :Rg<space>
+nnoremap <leader>aa :Rg<space><c-r><c-w><cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <leader>n :TagbarToggle<cr>
