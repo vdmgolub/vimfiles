@@ -19,8 +19,13 @@ set autoread                    " Reload files changed outside vim
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-" Turn on syntax highlighting
+" ================ Syntax highlighting ==============
 syntax on
+
+" Vue files
+let g:vue_disable_pre_processors=1
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
