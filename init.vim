@@ -12,7 +12,8 @@ set showcmd                     " Show incomplete cmds down the bottom
 set showmode                    " Show current mode down the bottom
 set gcr=a:blinkon0              " Disable cursor blink
 set visualbell                  " No sounds
-set autoread                    " Reload files changed outside vim
+set noautoread                  " Reload files changed outside vim
+au FocusGained * :checktime     " Workaround with file reload in nvim
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
