@@ -38,49 +38,50 @@ set nowb
 set runtimepath^=/usr/local/opt/fzf
 runtime plugin/fzf.vim
 
-" ================ NeoBundle ==============
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
-set packpath^=~/.vim
-packadd minpac
-call minpac#init()
-" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+" ================ Plugins ==============
+call plug#begin('~/.config/nvim/plugged')
 
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'bling/vim-airline'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-endwise'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'ervandew/supertab'
+Plug 'icymind/NeoSolarized'
+Plug 'tpope/vim-fugitive'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-markdown'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'elixir-lang/vim-elixir'
+Plug 'thoughtbot/vim-rspec'
+Plug 'junegunn/fzf'
+Plug 'jremmen/vim-ripgrep'
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'tpope/vim-eunuch'
+Plug 'leafgarland/typescript-vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'honza/vim-snippets'
+Plug 'albanm/vuetify-vim'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'SirVer/ultisnips'
 
-call minpac#add('scrooloose/nerdtree')
-call minpac#add('jistr/vim-nerdtree-tabs')
-call minpac#add('vim-scripts/bufexplorer.zip')
-call minpac#add('bling/vim-airline')
-call minpac#add('vim-ruby/vim-ruby')
-call minpac#add('tpope/vim-endwise')
-call minpac#add('scrooloose/syntastic')
-call minpac#add('kien/ctrlp.vim')
-call minpac#add('nathanaelkane/vim-indent-guides')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('tpope/vim-surround')
-call minpac#add('ervandew/supertab')
-call minpac#add('vdmgolub/vim-colors-solarized')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('majutsushi/tagbar')
-call minpac#add('vim-scripts/matchit.zip')
-call minpac#add('tpope/vim-markdown')
-call minpac#add('mattn/webapi-vim')
-call minpac#add('mattn/gist-vim')
-call minpac#add('mustache/vim-mustache-handlebars')
-call minpac#add("MarcWeber/vim-addon-mw-utils")
-call minpac#add("tomtom/tlib_vim")
-call minpac#add('garbas/vim-snipmate')
-call minpac#add("honza/vim-snippets")
-call minpac#add("vdmgolub/vim-snippets", { 'name': 'my-snippets' })
-call minpac#add('jiangmiao/auto-pairs')
-call minpac#add('elixir-lang/vim-elixir')
-call minpac#add('thoughtbot/vim-rspec')
-call minpac#add('junegunn/fzf')
-call minpac#add('jremmen/vim-ripgrep')
-
-filetype plugin indent on
-
+call plug#end()
 
 " ================ Plugins settings ==============
 
@@ -134,14 +135,19 @@ let g:gist_clip_command = 'pbcopy'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
-" Vim-Rspec
-let g:rspec_command = "!bin/rspec --no-color --format p {spec}"
-let g:rspec_runner = "os_x_iterm"
-
 " Solarized
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_hitrail=1
+set termguicolors
+let g:neosolarized_hitrail=1
+
+" Ripgrep
+let g:rg_highlight=1
+let g:rg_root_types=['!.git']
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+
+" YouCompleteMe
+let g:ycm_min_num_of_chars_for_completion=99
 
 " Ripgrep
 let g:rg_highlight=1
@@ -150,10 +156,8 @@ let g:rg_root_types=['!.git']
 " ================ Interface ====================
 
 set background=dark
-color solarized
-set guifont=Inconsolata-dz\ for\ Powerline:h16
+color neosolarized
 set list listchars=tab:▸\ ,trail:·
-set t_Co=256
 set title
 set cursorline
 set guioptions-=L " Remove left scroll bar
@@ -182,10 +186,13 @@ set nofoldenable        "dont fold by default
 
 au FocusLost * :wa " Save all changes if focus lost
 
-nnoremap <leader>e :NERDTreeTabsToggle<cr>
-nnoremap <leader>b :BufExplorer<cr>
-nnoremap <leader>a :Rg<space>
-nnoremap <leader>aa :Rg<space><c-r><c-w><cr>
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
+nnoremap <leader>e :NERDTreeToggle<cr>
+nnoremap <leader>v :BufExplorer<cr>
+nnoremap <leader>, :Rg<space>
+nnoremap <leader>,w :Rg<space><c-r><c-w><cr>
 nnoremap <silent><leader>t :FZF<cr>
 nnoremap <silent><leader>r :CtrlPTag<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
@@ -194,6 +201,7 @@ nnoremap <silent><leader>l :set list!<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 inoremap jj <esc>
+inoremap qq <esc>
 nnoremap <leader>gt :w<cr>:call RunCurrentSpecFile()<cr>
 nnoremap <leader>g :w<cr>:call RunNearestSpec()<cr>
 nnoremap <silent><leader>p :let @+=expand('%:p')<cr>

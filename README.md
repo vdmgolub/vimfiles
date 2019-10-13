@@ -1,33 +1,26 @@
-# Vimfiles
+# Vimfiles (for Neovim)
 
 ## Installation
 
 Clone this repo:
 
 ```bash
-$ git clone https://github.com/vdmgolub/vimfiles.git ~/.vim
+$ git clone https://github.com/vdmgolub/vimfiles.git ~/.config/nvim/
 ```
 
-Symlink vimrc to home directory:
-
-```bash
-$ ln -s ~/.vim/vimrc ~/.vimrc
+Install [Plug](https://github.com/junegunn/vim-plug) plugin manager:
 ```
-
-Create `pack/minpac/opt/` directory in `.vim/` and install
-[minpac](https://github.com/k-takata/minpac):
-
-```bash
-$ git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+curl -fLo ~/.config/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 Download and install font from [here](https://github.com/powerline/fonts/tree/master/InconsolataDz).
 It is patched to show special characters.
 
-Open vim and run the following command to install/update all plugins:
+Open nvim and run the following command to install/update all plugins:
 
 ```bash
-:call minpac#update()
+:PlugInstall
 ```
 
 Enjoy :)
