@@ -49,6 +49,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
 Plug 'albanm/vuetify-vim'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
@@ -113,6 +114,20 @@ let g:nerdtree_tabs_focus_on_files = 1      " Focus in the main content window
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#branch#displayed_head_limit = 20
+
+function! MyLineNumber()
+  return substitute(line('.'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g'). ' | '.
+    \    substitute(line('$'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g')
+endfunction
+
+call airline#parts#define('linenr', {'function': 'MyLineNumber', 'accents': 'bold'})
+let g:airline_section_z = airline#section#create(['%3p%%: ', 'linenr', ':%3v'])
+
+" Vim-Airline-Themes
+let g:airline_theme='solarized'
+let g:airline_solarized_bg = 'dark'
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
