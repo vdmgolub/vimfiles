@@ -57,8 +57,8 @@ Plug 'janko/vim-test'
 Plug 'jgdavey/vim-blockle'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
@@ -122,6 +122,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers = ['handlebars', 'eslint']
 let g:syntastic_html_checkers = ['handlebars', 'eslint']
 
+" Fzf
+let g:fzf_preview_window = 'right:60%'
+
 " Gist-vim
 let g:gist_post_private = 1
 let g:gist_show_privates = 1
@@ -155,9 +158,6 @@ let g:deoplete#sources._ = ['buffer', 'tag', 'ultisnips']
 let g:deoplete#tag#cache_limit_size = 500000000
 let g:deoplete#num_processes = 1
 
-" Ripgrep
-let g:rg_highlight=1
-let g:rg_root_types=['!.git']
 
 " Vim-vue
 let g:vue_disable_pre_processors=1
@@ -213,7 +213,7 @@ nnoremap <leader>e :NERDTreeToggle<cr>
 nnoremap <leader>v :BufExplorer<cr>
 nnoremap <leader>, :Rg<space>
 nnoremap <leader>,w :Rg<space><c-r><c-w><cr>
-nnoremap <silent><leader>t :FZF<cr>
+nnoremap <silent><leader>t :Files<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
 nnoremap <leader>n :TagbarToggle<cr>
 nnoremap <silent><leader>l :set list!<cr>
