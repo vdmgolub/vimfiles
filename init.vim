@@ -62,6 +62,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -84,6 +85,7 @@ Plug 'vim-scripts/matchit.zip'
 " Plug 'ycm-core/YouCompleteMe'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-tag'
+Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
@@ -173,6 +175,8 @@ let g:deoplete#sources._ = ['buffer', 'tag', 'ultisnips']
 let g:deoplete#tag#cache_limit_size = 500000000
 let g:deoplete#num_processes = 1
 
+" vim-gh-line
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 " Vim-vue
 let g:vue_disable_pre_processors=1
