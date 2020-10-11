@@ -54,7 +54,6 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'icymind/NeoSolarized'
-Plug 'janko/vim-test'
 Plug 'jgdavey/vim-blockle'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
@@ -90,16 +89,6 @@ Plug 'ruanyl/vim-gh-line'
 call plug#end()
 
 " ================ Plugins settings ==============
-
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 25
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :Vexplore
-" augroup END
 
 " NERDTree
 let NERDTreeMinimalUI  = 1
@@ -183,8 +172,6 @@ let g:vue_disable_pre_processors=1
 autocmd FileType vue syntax sync fromstart
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
-" Vim-test
-let g:test#preserve_screen = 1
 
 " BufExplorer
 let g:bufExplorerSplitOutPathName=0
@@ -253,21 +240,6 @@ nmap <c-n> :bdelete<cr>
 nnoremap <leader>cc :cclose<cr>
 nnoremap <leader>co :copen<cr>
 
-" Vim-test
-let g:test#preserve_screen = 1
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nnoremap <leader>rt :wa <bar> :TestFile -strategy=iterm<cr>
-
-" Deoplete
-" inoremap <silent><expr> <TAB>
-"   \ pumvisible() ? "\<C-n>" :
-"   \ <SID>check_back_space() ? "\<TAB>" :
-"   \ deoplete#mappings#manual_complete()
-"   function! s:check_back_space() abort "{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-"   endfunction"}}}
 " ================ Plugins' default key mappings ====================
 
 " <leader>ig :IndentGuidesToggle<cr> - Show/hide indentation levels
