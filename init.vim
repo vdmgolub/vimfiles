@@ -81,6 +81,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/matchit.zip'
+Plug 'vimwiki/vimwiki'
 Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
@@ -154,6 +155,9 @@ let g:vue_disable_pre_processors=1
 autocmd FileType vue syntax sync fromstart
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " BufExplorer
 let g:bufExplorerSplitOutPathName=0
