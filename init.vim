@@ -46,12 +46,10 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'SirVer/ultisnips'
 Plug 'albanm/vuetify-vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'elixir-lang/vim-elixir'
-Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
 Plug 'icymind/NeoSolarized'
 Plug 'jgdavey/vim-blockle'
@@ -67,6 +65,7 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'scrooloose/nerdtree'
@@ -81,9 +80,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/matchit.zip'
-" Plug 'ycm-core/YouCompleteMe'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-tag'
 Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
@@ -149,21 +145,6 @@ let g:neosolarized_hitrail=1
 let g:rg_highlight=1
 let g:rg_root_types=['!.git']
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-
-" YouCompleteMe
-" let g:ycm_min_num_of_chars_for_completion=3
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'tag', 'ultisnips']
-let g:deoplete#tag#cache_limit_size = 500000000
-let g:deoplete#num_processes = 1
-
 " vim-gh-line
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
@@ -176,6 +157,62 @@ autocmd FileType vue syntax sync fromstart
 " BufExplorer
 let g:bufExplorerSplitOutPathName=0
 let g:bufExplorerShowRelativePath=1
+
+" CoC
+nmap <silent> gi <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <s-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> (pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
+" Workaround for regular new lines
+imap <expr> <CR> (pumvisible() ? "\<C-y>\<CR>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 " ================ Interface ====================
 
