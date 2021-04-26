@@ -15,6 +15,9 @@ set visualbell                  " No sounds
 set autoread                    " Reload files changed outside vim
 au FocusGained * :checktime     " Workaround with file reload in nvim
 
+
+set mouse=n
+
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -33,40 +36,39 @@ set noswapfile
 set nobackup
 set nowb
 
-" ================ Runtime paths ==============
-
-" Load FZF from homebrew installation
-set runtimepath^=/usr/local/opt/fzf
-runtime plugin/fzf.vim
-
-" let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " ================ Plugins ==============
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'nvim-lua/completion-nvim'
+Plug 'steelsojka/completion-buffers'
+Plug 'kristijanhusak/completion-tags'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'albanm/vuetify-vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'elixir-editors/vim-elixir'
 Plug 'honza/vim-snippets'
+
 Plug 'icymind/NeoSolarized'
+
 Plug 'jgdavey/vim-blockle'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'leafgarland/typescript-vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'scrooloose/nerdtree'
@@ -87,14 +89,56 @@ Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
+:lua << END
+  require'lspinstall'.setup() -- important
+  local servers = require'lspinstall'.installed_servers()
+
+  require'lspconfig'.ruby.setup{on_attach=require'completion'.on_attach}
+  local actions = require('telescope.actions')
+  require('telescope').setup {
+      defaults = {
+          file_sorter = require('telescope.sorters').get_fzy_sorter,
+          prompt_prefix = ' >',
+          color_devicons = true,
+
+          file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
+          grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
+          qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+
+          mappings = {
+              i = {
+                  ["<C-x>"] = false,
+                  ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+              },
+          },
+
+          preview_cutoff = 80,
+      },
+      extensions = {
+          fzy_native = {
+              override_generic_sorter = false,
+              override_file_sorter = true,
+          }
+      }
+  }
+  require('telescope').load_extension('fzy_native')
+END
+
+autocmd BufEnter * lua require'completion'.on_attach()
+
 " ================ Plugins settings ==============
 
 " NERDTree
 let NERDTreeMinimalUI  = 1
 let NERDTreeShowHidden = 1
-let g:NERDTreeWinSize  = 35  " Window size
+let g:NERDTreeWinSize  = 30  " Window size
 let NERDTreeDirArrows  = 1
-let NERDTreeShowHidden  = 0
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " NERDTreeTabs
 let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup
@@ -127,8 +171,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers = ['handlebars', 'eslint']
 let g:syntastic_html_checkers = ['handlebars', 'eslint']
 
-" Fzf
-let g:fzf_preview_window = 'right:60%'
 
 " Gist-vim
 let g:gist_post_private = 1
@@ -152,8 +194,8 @@ let g:rg_root_types=['!.git']
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 " Vim-vue
-let g:vue_disable_pre_processors=1
-autocmd FileType vue syntax sync fromstart
+" let g:vue_disable_pre_processors=1
+" autocmd FileType vue syntax sync fromstart
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " Vimwiki
@@ -163,62 +205,28 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 " BufExplorer
 let g:bufExplorerSplitOutPathName=0
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerSplitVertSize=0
 
-" CoC
-nmap <silent> gi <Plug>(coc-definition)
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" LSP config (the mappings used in the default file don't quite work right)
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" Emmet
+let g:user_emmet_leader_key=','
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
-imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <s-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> (pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
-" Workaround for regular new lines
-imap <expr> <CR> (pumvisible() ? "\<C-y>\<CR>\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>s <cmd>Telescope grep_string<cr>
+nnoremap <leader>v <cmd>Telescope buffers<cr>
+nnoremap <leader>h <cmd>Telescope help_tags<cr>
 
 " ================ Interface ====================
 
@@ -228,7 +236,8 @@ set list listchars=tab:▸\ ,trail:·
 set title
 set cursorline
 set guioptions-=L " Remove left scroll bar
-execute 'set colorcolumn=' . join(range(101,335), ',')
+set colorcolumn=80
+" execute 'set colorcolumn=' . join(range(101,335), ',')
 
 set nowrap       " Don't wrap lines
 set linebreak    " Wrap lines at convenient points
@@ -258,28 +267,24 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 nnoremap <leader>rc :e ~/.config/nvim/init.vim<cr>
 nnoremap <leader>e :NERDTreeToggle<cr>
-" nnoremap <leader>e :Vexplore<cr>
 nnoremap <leader>v :BufExplorer<cr>
-nnoremap <leader>, :Rg<space>
-nnoremap <leader>,w :Rg<space><c-r><c-w><cr>
-nnoremap <silent><leader>t :Files<cr>
+" nnoremap <leader>, :Rg<space>
+" nnoremap <leader>,w :Rg<space><c-r><c-w><cr>
+" nnoremap <silent><leader>t :Files<cr>
 nnoremap <leader>f :b#<cr> " Switch between two recent buffers
-nnoremap <leader>n :TagbarToggle<cr>
 nnoremap <silent><leader>l :set list!<cr>
 
 nnoremap <silent><leader><space> :noh<cr>
 nnoremap zz :wa<cr>
 inoremap jj <esc>
 inoremap qq <esc>
-nnoremap <leader>gt :w<cr>:call RunCurrentSpecFile()<cr>
-nnoremap <leader>g :w<cr>:call RunNearestSpec()<cr>
 nnoremap <silent><leader>p :let @+=expand('%:p')<cr>
 nnoremap <silent><leader>pl :let @+=expand('%:p') . ':' . line('.')<cr>
 noremap <silent><leader>ph :Gbrowse<cr>
 noremap <silent><leader>pg :Gbrowse!<cr>
 nmap <c-g> :bnext<cr>
 nmap <c-f> :bprevious<cr>
-nmap <c-n> :bdelete<cr>
+" nmap <c-n> :bdelete<cr>
 nnoremap <leader>cc :cclose<cr>
 nnoremap <leader>co :copen<cr>
 
@@ -292,6 +297,32 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
+
+
+" Completion-nvim
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_confirm_key = ""
+let g:completion_enable_server_trigger = 0
+let g:completion_trigger_character = ['.', ':']
+let g:completion_trigger_keyword_length = 3
+let g:completion_chain_complete_list = {
+    \'default' : [
+    \    {'complete_items': ['lsp', 'buffer']},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+    \}
+" Fix for endwise
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+                 \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>\<Plug>DiscretionaryEnd" :  "\<CR>\<Plug>DiscretionaryEnd"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 " ================ Plugins' default key mappings ====================
 
