@@ -282,6 +282,7 @@ nnoremap <silent><leader>p :let @+=expand('%:p')<cr>
 nnoremap <silent><leader>pl :let @+=expand('%:p') . ':' . line('.')<cr>
 noremap <silent><leader>ph :Gbrowse<cr>
 noremap <silent><leader>pg :Gbrowse!<cr>
+noremap <silent><leader>gb :Git blame<cr>
 nmap <c-g> :bnext<cr>
 nmap <c-f> :bprevious<cr>
 " nmap <c-n> :bdelete<cr>
