@@ -17,6 +17,7 @@ au FocusGained * :checktime     " Workaround with file reload in nvim
 
 
 set mouse=n
+set cb=unnamedplus
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -87,6 +88,18 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'vimwiki/vimwiki'
 Plug 'ruanyl/vim-gh-line'
 
+" Search
+Plug 'jremmen/vim-ripgrep'
+
+" HCL
+Plug 'jvirtanen/vim-hcl'
+
+" Aligning
+Plug 'jmckiern/vim-venter'
+
+" Test Mermaid sequence syntax highlighting
+Plug 'zhaozg/vim-diagram'
+
 call plug#end()
 
 :lua << END
@@ -112,7 +125,9 @@ call plug#end()
               },
           },
 
-          preview_cutoff = 80,
+          layout_config = {
+            preview_cutoff = 80,
+          },
       },
       extensions = {
           fzy_native = {
@@ -208,7 +223,8 @@ let g:bufExplorerShowRelativePath=1
 let g:bufExplorerSplitVertSize=0
 
 " LSP config (the mappings used in the default file don't quite work right)
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gs <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -260,7 +276,9 @@ set nofoldenable        "dont fold by default
 
 " ================ Key mappings ====================
 
-au FocusLost * :wa " Save all changes if focus lost
+" Save all changes if focus lost
+au FocusLost * :wa " in UI
+au BufLeave * silent! wall
 
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
@@ -288,6 +306,8 @@ nmap <c-f> :bprevious<cr>
 " nmap <c-n> :bdelete<cr>
 nnoremap <leader>cc :cclose<cr>
 nnoremap <leader>co :copen<cr>
+
+nnoremap <leader>gb :Git blame<cr>
 
 
 " Quick-scope
