@@ -60,6 +60,17 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+  -- Custom plugins
+  use {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    }
+  }
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -443,8 +454,12 @@ cmp.setup {
   },
 }
 
+-- Custom setup
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
 -- Custom keymappings
 vim.keymap.set('n', '<leader>f', ':b#<cr>') -- Switch between two recent buffers
+vim.keymap.set('n', '<leader>e', ':NeoTreeShowToggle<cr>') -- Show/hide file explorer
 
 vim.keymap.set('n', '<C-j>', ' <C-w>j') -- Navigate easier between panes
 vim.keymap.set('n', '<C-k>', ' <C-w>k') -- Navigate easier between panes
