@@ -443,5 +443,13 @@ cmp.setup {
   },
 }
 
+-- Custom keymappings
+vim.keymap.set('n', '<leader>f', ':b#<cr>') -- Switch between two recent buffers
+
+vim.keymap.set('n', '<C-j>', ' <C-w>j') -- Navigate easier between panes
+vim.keymap.set('n', '<C-k>', ' <C-w>k') -- Navigate easier between panes
+vim.keymap.set('n', '<C-h>', ' <C-w>h') -- Navigate easier between panes
+vim.keymap.set('n', '<C-l>', ' <C-w>l') -- Navigate easier between panes
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
