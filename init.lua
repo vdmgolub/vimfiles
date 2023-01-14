@@ -221,7 +221,19 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = {
+    'elixir',
+    'go',
+    'help',
+    'lua',
+    'python',
+    'ruby',
+    'javascript',
+    'sql',
+    'terraform',
+    'typescript',
+    'vim',
+  },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -337,11 +349,18 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+  elixirls = {},
+  emmet_ls = {},
+  eslint = {},
+  gopls = {},
+  graphql = {},
+  pyright = {},
+  solargraph = {},
+  sqls = {},
+  tailwindcss = {},
+  terraformls = {},
+  tsserver = {},
+  yamlls = {},
 
   sumneko_lua = {
     Lua = {
