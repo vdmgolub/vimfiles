@@ -457,9 +457,13 @@ cmp.setup {
 -- Custom setup
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
+vim.opt.cb = 'unnamedplus' -- Copy to clipboard
+vim.opt.textwidth = 80
+vim.opt.colorcolumn = '+1' -- Set vertical marker
+
 -- Custom keymappings
 vim.keymap.set('n', '<leader>f', ':b#<cr>') -- Switch between two recent buffers
-vim.keymap.set('n', '<leader>e', ':NeoTreeShowToggle<cr>') -- Show/hide file explorer
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<cr>') -- Show/hide file explorer
 
 vim.keymap.set('n', '<C-j>', ' <C-w>j') -- Navigate easier between panes
 vim.keymap.set('n', '<C-k>', ' <C-w>k') -- Navigate easier between panes
