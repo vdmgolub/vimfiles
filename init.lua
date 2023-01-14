@@ -461,6 +461,14 @@ vim.opt.cb = 'unnamedplus' -- Copy to clipboard
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = '+1' -- Set vertical marker
 
+-- From Primeagen
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
+
+vim.opt.scrolloff = 8
+
 -- Custom keymappings
 vim.keymap.set('n', '<leader>f', ':b#<cr>') -- Switch between two recent buffers
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<cr>') -- Show/hide file explorer
