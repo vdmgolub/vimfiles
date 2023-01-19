@@ -71,6 +71,12 @@ require('packer').startup(function(use)
     }
   }
 
+  use { 'windwp/nvim-ts-autotag' }
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs').setup {} end
+  }
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -236,6 +242,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'elixir',
     'go',
+    'graphql',
     'help',
     'lua',
     'python',
@@ -243,10 +250,15 @@ require('nvim-treesitter.configs').setup {
     'javascript',
     'sql',
     'terraform',
+    'tsx',
     'typescript',
     'vim',
   },
 
+  auto_install = true,
+  autotag = {
+    enabled = true
+  },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
@@ -461,6 +473,8 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 vim.opt.cb = 'unnamedplus' -- Copy to clipboard
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = '+1' -- Set vertical marker
+
+require('nvim-ts-autotag').setup()
 
 -- From Primeagen
 vim.opt.nu = true
