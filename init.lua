@@ -202,18 +202,18 @@ vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 
 require('indent_blankline').setup {
   -- char = '┊',
+  disable_with_nolist = true,
   show_end_of_line = true,
   show_trailing_blankline_indent = true,
   show_current_context = true,
-  show_current_context_start = true,
+  show_current_context_start = false,
   space_char_blankline = " ",
-  -- space_char_blankline = "⋅",
   char_highlight_list = {
     "IndentBlanklineIndent1",
     "IndentBlanklineIndent2",
@@ -522,6 +522,7 @@ vim.opt.scrolloff = 8
 -- Custom keymappings
 vim.keymap.set('n', '<leader>f', ':b#<cr>') -- Switch between two recent buffers
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<cr>') -- Show/hide file explorer
+vim.keymap.set('n', '<leader>L', function() vim.o.list = not vim.o.list end) -- Show/Hide list chars
 
 vim.keymap.set('n', '<C-j>', ' <C-w>j') -- Navigate easier between panes
 vim.keymap.set('n', '<C-k>', ' <C-w>k') -- Navigate easier between panes
