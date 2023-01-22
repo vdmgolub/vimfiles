@@ -78,15 +78,15 @@ require('packer').startup(function(use)
   }
 
   use({
-	'Pocco81/auto-save.nvim',
-	config = function()
-		 require('auto-save').setup {
+    'Pocco81/auto-save.nvim',
+    config = function()
+      require('auto-save').setup {
         enabled = true,
         write_all_buffers = true,
-        trigger_events = {'BufLeave', 'FocusLost'},
-		 }
-	end,
-})
+        trigger_events = { 'BufLeave', 'FocusLost' },
+      }
+    end,
+  })
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
