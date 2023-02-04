@@ -26,6 +26,14 @@ require('packer').startup(function(use)
     },
   }
 
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require('lspsaga').setup({})
+    end,
+  })
+
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -148,7 +156,10 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+require('onedark').setup {
+  style = 'darker'
+}
+require('onedark').load()
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -205,6 +216,7 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 vim.opt.list = false
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
+vim.opt.listchars:append "tab:→ "
 
 require('indent_blankline').setup {
   -- char = '┊',
@@ -213,7 +225,6 @@ require('indent_blankline').setup {
   show_trailing_blankline_indent = true,
   show_current_context = true,
   show_current_context_start = false,
-  space_char_blankline = " ",
   char_highlight_list = {
     "IndentBlanklineIndent1",
     "IndentBlanklineIndent2",
@@ -254,7 +265,7 @@ pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader><space>', function() require('telescope.builtin').buffers({ sort_mru = true, ignore_current_buffer = true }) end, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -355,6 +366,7 @@ require('nvim-treesitter.configs').setup {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', 'L', vim.diagnostic.open_float)
+-- vim.keymap.set('n', 'L', '<cmd>Lspsaga show_line_diagnostics<cr>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
@@ -376,6 +388,8 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  -- nmap('<leader>rn', '<cmd>Lspsaga rename<cr>', '[R]e[n]ame')
+  -- nmap('<leader>ca', '<cmd>Lspsaga code_action<cr>', '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -387,6 +401,8 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
+  nmap('<leader>xx', '<cmd>LspRestart<cr>', 'Restart LSP')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -400,6 +416,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+  nmap('<leader>F', '<cmd>Format<cr>', '[F]ormat')
 end
 
 -- Enable the following language servers
@@ -508,6 +525,11 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 vim.opt.cb = 'unnamedplus' -- Copy to clipboard
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = '+1' -- Set vertical marker
+
+--- Save all changes if focus lost
+vim.cmd('au FocusLost * :wa')
+vim.cmd('au BufLeave * silent! wall')
+
 
 require('nvim-ts-autotag').setup()
 
