@@ -24,8 +24,54 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+keymap.set("n", "<leader>f", ":b#<cr>", { desc = "Switch between two recent buffers" }) -- Switch between two recent buffers
+
+keymap.set("n", "<C-j>", " <C-w>j") -- Navigate easier between panes
+keymap.set("n", "<C-k>", " <C-w>k") -- Navigate easier between panes
+keymap.set("n", "<C-h>", " <C-w>h") -- Navigate easier between panes
+keymap.set("n", "<C-l>", " <C-w>l") -- Navigate easier between panes
+
+-- Remap for dealing with word wrap
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Git-related
+keymap.set(
+  "n",
+  "<leader>hy",
+  '<cmd>lua require"gitlinker".get_buf_range_url("n", {})<cr>',
+  { silent = true, desc = "Copy URL for buffer range to clipboard" }
+)
+keymap.set(
+  "v",
+  "<leader>hy",
+  '<cmd>lua require"gitlinker".get_buf_range_url("v", {})<cr>',
+  { desc = "Copy URL for buffer range to clipboard" }
+)
+keymap.set(
+  "n",
+  "<leader>hb",
+  '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+  { silent = true, desc = "Open URL for buffer range" }
+)
+keymap.set(
+  "v",
+  "<leader>hb",
+  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+  { desc = "Open URL for buffer range" }
+)
+keymap.set(
+  "n",
+  "<leader>hB",
+  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+  { silent = true, desc = "Open repo URL in browser" }
+)
+
+-- Gist
+keymap.set(
+  "n",
+  "<leader>hh",
+  "<cmd>GistCreate from vim<cr>",
+  { silent = true, desc = "Create a GitHub gist from current buffer" }
+)
+keymap.set("v", "<leader>hh", "<cmd>GistCreate from vim<cr>", { desc = "Create a GitHub gist from selection" })

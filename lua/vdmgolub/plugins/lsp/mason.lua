@@ -35,6 +35,8 @@ return {
         "graphql",
         "emmet_ls",
         "prismals",
+        "gopls",
+        -- "nextls",
         -- "pyright",
       },
       -- auto-install configured servers (with lspconfig)

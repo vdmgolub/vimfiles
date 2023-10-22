@@ -24,6 +24,8 @@ return {
         },
         -- ensure these language parsers are installed
         ensure_installed = {
+          "elixir",
+          "ruby",
           "json",
           "javascript",
           "typescript",
@@ -41,6 +43,7 @@ return {
           "dockerfile",
           "gitignore",
           "query",
+          "go",
         },
         incremental_selection = {
           enable = true,
