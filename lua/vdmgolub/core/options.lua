@@ -40,3 +40,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+--- Save all changes if focus lost
+-- vim.cmd("au FocusLost * :wa")
+vim.cmd("au BufLeave * silent! wall")
