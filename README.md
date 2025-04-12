@@ -14,4 +14,4 @@ Open nvim:
 nvim
 ```
 
-Enjoy :)
+NB: Avante is setup to work with Anthropic API. Set `ANTHROPIC_API_KEY` in env vars.
