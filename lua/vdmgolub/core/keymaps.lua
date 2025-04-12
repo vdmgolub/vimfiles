@@ -75,3 +75,18 @@ keymap.set(
   { silent = true, desc = "Create a GitHub gist from current buffer" }
 )
 keymap.set("v", "<leader>hh", "<cmd>GistCreate from vim<cr>", { desc = "Create a GitHub gist from selection" })
+
+-- Tmux navigator
+keymap.set("n", "<C-h>", "<cmd>TmuxNagivateLeft<cr>", { silent = true, desc = "Navigate left pane", remap = true })
+keymap.set("n", "<C-j>", "<cmd>TmuxNagivateDown<cr>", { silent = true, desc = "Navigate bottom pane", remap = true })
+keymap.set("n", "<C-k>", "<cmd>TmuxNagivateUp<cr>", { silent = true, desc = "Navigate upper pane", remap = true })
+keymap.set("n", "<C-l>", "<cmd>TmuxNagivateRight<cr>", { silent = true, desc = "Navigate right pane", remap = true })
+
+-- Aerial
+keymap.set("n", "<leader>cl", "<cmd>AerialToggle<cr>", { silent = true, desc = "Toggle Aerial" })
+keymap.set("n", "<leader>cb", "<cmd>GitBlameToggle<cr>", { silent = true, desc = "Toggle GitBlame" })
+
+-- Lazy
+keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>", { silent = true, desc = "Update plugins" })
+
+keymap.set('i', '<C-c>', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
