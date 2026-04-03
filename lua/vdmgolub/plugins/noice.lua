@@ -2,13 +2,12 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   opts = {
-    -- add any options here
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
+        ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
       },
     },
     -- you can enable a preset for easier configuration
@@ -19,6 +18,15 @@ return {
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = false, -- add a border to hover docs and signature help
     },
+    -- defaults didn't work, had to override the position to be on my eye level
+    views = {
+      cmdline_popup = {
+        position = {
+          row = "40%",
+          col = "50%",
+        },
+      },
+    },
   },
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -26,6 +34,6 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    -- "rcarriga/nvim-notify",
+    "rcarriga/nvim-notify",
   },
 }

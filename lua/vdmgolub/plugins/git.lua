@@ -38,20 +38,22 @@ return {
     end,
   },
   {
-    "ruifm/gitlinker.nvim",
+    "linrongbin16/gitlinker.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
     lazy = true,
-    opts = {
-      mappings = nil, -- reset default mappings
+    cmd = "GitLink",
+    opts = {},
+    keys = {
+      { "<leader>hb", "<cmd>GitLink default_branch<cr>", mode = { "n", "v" }, desc = "Yank git link" },
+      { "<leader>hB", "<cmd>GitLink! default_branch<cr>", mode = { "n", "v" }, desc = "Open git link" },
     },
-    config = true,
   },
   {
     "Rawnly/gist.nvim",
     cmd = { "GistCreate", "GistCreateFromFile", "GistsList" },
-    config = {
+    opts = {
       private = true, -- All gists will be private, you won't be prompted again
     },
   },

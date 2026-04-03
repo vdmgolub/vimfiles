@@ -14,7 +14,19 @@ return {
       ts_config = {
         lua = { "string" }, -- don't add pairs in lua string treesitter nodes
         javascript = { "template_string" }, -- don't add pairs in javascript template_string treesitter nodes
+        typescript = { "template_string" }, -- don't add pairs in javascript template_string treesitter nodes
       },
+    })
+
+    -- markdown pairs
+    local Rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
+    autopairs.add_rules({
+      Rule("*", "*", "markdown"):with_pair(cond.not_before_text("*")):with_move(cond.after_text("*")),
+      -- Rule("_", "_", "markdown"):with_move(cond.after_text("_")),
+      Rule("~", "~", "markdown"):with_move(cond.after_text("~")),
+      Rule("`", "`", "markdown"):with_move(cond.after_text("`")),
+      Rule("```", "```", "markdown"):with_move(cond.after_text("```")),
     })
 
     -- import nvim-autopairs completion functionality
