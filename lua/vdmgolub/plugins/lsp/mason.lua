@@ -27,17 +27,19 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
+        -- "ts_ls", -- replaced with typescript-tools
+        "vtsls", -- replaces typescript-tools
         "html",
         "cssls",
-        "tailwindcss",
+        -- "tailwindcss",
         "lua_ls",
         "graphql",
-        "emmet_ls",
+        -- "emmet_ls",
         "prismals",
         "gopls",
-        -- "nextls",
+        -- "elixirls",
         -- "pyright",
+        "sqls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
