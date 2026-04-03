@@ -8,6 +8,10 @@ return {
       configure = true,
     },
     git = { enabled = true },
+    win = {
+      width = 0.99,
+      height = 0.99,
+    },
   },
   keys = {
     {

@@ -53,11 +53,23 @@ return {
       },
     })
 
+    -- auto-open on startup (don't steal focus, find current file)
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = function(data)
+        local real_file = vim.fn.filereadable(data.file) == 1
+        local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+        if not real_file and not no_name then
+          return
+        end
+        require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
+      end,
+    })
+
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
     keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-    keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
+    keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", { desc = "Focus current file in explorer" })
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
   end,
