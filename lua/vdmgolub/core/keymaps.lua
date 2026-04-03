@@ -26,46 +26,9 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 
 keymap.set("n", "<leader>f", ":b#<cr>", { desc = "Switch between two recent buffers" }) -- Switch between two recent buffers
 
-keymap.set("n", "<C-j>", " <C-w>j") -- Navigate easier between panes
-keymap.set("n", "<C-k>", " <C-w>k") -- Navigate easier between panes
-keymap.set("n", "<C-h>", " <C-w>h") -- Navigate easier between panes
-keymap.set("n", "<C-l>", " <C-w>l") -- Navigate easier between panes
-
 -- Remap for dealing with word wrap
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Git-related
-keymap.set(
-  "n",
-  "<leader>hy",
-  '<cmd>lua require"gitlinker".get_buf_range_url("n", {})<cr>',
-  { silent = true, desc = "Copy URL for buffer range to clipboard" }
-)
-keymap.set(
-  "v",
-  "<leader>hy",
-  '<cmd>lua require"gitlinker".get_buf_range_url("v", {})<cr>',
-  { desc = "Copy URL for buffer range to clipboard" }
-)
-keymap.set(
-  "n",
-  "<leader>hb",
-  '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
-  { silent = true, desc = "Open URL for buffer range" }
-)
-keymap.set(
-  "v",
-  "<leader>hb",
-  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>',
-  { desc = "Open URL for buffer range" }
-)
-keymap.set(
-  "n",
-  "<leader>hB",
-  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
-  { silent = true, desc = "Open repo URL in browser" }
-)
 
 -- Gist
 keymap.set(
@@ -76,17 +39,53 @@ keymap.set(
 )
 keymap.set("v", "<leader>hh", "<cmd>GistCreate from vim<cr>", { desc = "Create a GitHub gist from selection" })
 
--- Tmux navigator
-keymap.set("n", "<C-h>", "<cmd>TmuxNagivateLeft<cr>", { silent = true, desc = "Navigate left pane", remap = true })
-keymap.set("n", "<C-j>", "<cmd>TmuxNagivateDown<cr>", { silent = true, desc = "Navigate bottom pane", remap = true })
-keymap.set("n", "<C-k>", "<cmd>TmuxNagivateUp<cr>", { silent = true, desc = "Navigate upper pane", remap = true })
-keymap.set("n", "<C-l>", "<cmd>TmuxNagivateRight<cr>", { silent = true, desc = "Navigate right pane", remap = true })
-
 -- Aerial
 keymap.set("n", "<leader>cl", "<cmd>AerialToggle<cr>", { silent = true, desc = "Toggle Aerial" })
 keymap.set("n", "<leader>cb", "<cmd>GitBlameToggle<cr>", { silent = true, desc = "Toggle GitBlame" })
+
+-- Navigate to the name of the enclosing function (treesitter-based)
+keymap.set("n", "gF", function()
+  local function_types = {
+    function_declaration = true,
+    method_definition = true,
+    function_expression = true,
+  }
+  local node = vim.treesitter.get_node()
+  while node do
+    local t = node:type()
+    if function_types[t] then
+      local name_node = node:field("name")[1]
+      if name_node then
+        local row, col = name_node:start()
+        vim.api.nvim_win_set_cursor(0, { row + 1, col })
+        return
+      end
+    elseif t == "variable_declarator" then
+      -- handles: const foo = () => {} or const foo = function() {}
+      local name_node = node:field("name")[1]
+      if name_node then
+        local row, col = name_node:start()
+        vim.api.nvim_win_set_cursor(0, { row + 1, col })
+        return
+      end
+    end
+    node = node:parent()
+  end
+  vim.notify("No enclosing named function found", vim.log.levels.WARN)
+end, { desc = "Go to enclosing function name" })
 
 -- Lazy
 keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>", { silent = true, desc = "Update plugins" })
 
 keymap.set('i', '<C-c>', '<Esc>', { noremap = true, desc = 'Exit insert mode' })
+keymap.set('n', '<leader>rl', function()
+  -- Clear module cache
+  for name, _ in pairs(package.loaded) do
+    if name:match("^vdmgolub") then
+      package.loaded[name] = nil
+    end
+  end
+  -- Source init.lua
+  vim.cmd.source(vim.env.MYVIMRC)
+  vim.notify("Reloaded all lua modules!", vim.log.levels.INFO)
+end, { noremap = true, desc = 'Reload all lua modules' })
