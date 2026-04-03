@@ -37,7 +37,7 @@ Requires `macism` on macOS:
 brew install macism
 ```
 
-Switches input method back to ABC on leaving insert mode (useful when typing in non-Latin scripts).
+Switches input method back to ABC on leaving insert mode (useful when typing in non-Latin scripts, I use it for German QWERTZ).
 
 ### Go debugging (`nvim-dap`)
 
