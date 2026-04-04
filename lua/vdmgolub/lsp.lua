@@ -4,7 +4,7 @@ M.capabilities = function()
   return require("blink.cmp").get_lsp_capabilities()
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
   local keymap = vim.keymap
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -46,7 +46,9 @@ M.on_attach = function(client, bufnr)
 
   opts.desc = "Restart LSP"
   keymap.set("n", "<leader>rs", function()
-    vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = bufnr }))
+    for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+      c:stop()
+    end
     vim.defer_fn(function()
       vim.cmd("edit")
     end, 500)

@@ -12,7 +12,9 @@ return {
       local capabilities = lsp.capabilities()
 
       vim.api.nvim_create_user_command("LspRestart", function()
-        vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 }))
+        for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+          client:stop()
+        end
         vim.defer_fn(function()
           vim.cmd("edit")
         end, 500)
@@ -22,7 +24,9 @@ return {
         local clients = opts.args ~= ""
           and vim.lsp.get_clients({ name = opts.args, bufnr = 0 })
           or vim.lsp.get_clients({ bufnr = 0 })
-        vim.lsp.stop_client(clients)
+        for _, client in ipairs(clients) do
+          client:stop()
+        end
       end, { nargs = "?", complete = function()
         return vim.tbl_map(function(c) return c.name end, vim.lsp.get_clients({ bufnr = 0 }))
       end, desc = "Stop LSP client(s) for current buffer" })
