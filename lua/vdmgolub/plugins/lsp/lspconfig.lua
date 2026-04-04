@@ -18,6 +18,15 @@ return {
         end, 500)
       end, { desc = "Restart LSP clients for current buffer" })
 
+      vim.api.nvim_create_user_command("LspStop", function(opts)
+        local clients = opts.args ~= ""
+          and vim.lsp.get_clients({ name = opts.args, bufnr = 0 })
+          or vim.lsp.get_clients({ bufnr = 0 })
+        vim.lsp.stop_client(clients)
+      end, { nargs = "?", complete = function()
+        return vim.tbl_map(function(c) return c.name end, vim.lsp.get_clients({ bufnr = 0 }))
+      end, desc = "Stop LSP client(s) for current buffer" })
+
       -- Change the Diagnostic symbols in the sign column (gutter)
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
