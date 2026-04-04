@@ -44,3 +44,12 @@ opt.swapfile = false
 --- Save all changes if focus lost
 -- vim.cmd("au FocusLost * :wa")
 vim.cmd("au BufLeave * silent! wall")
+
+-- Soft wrap in markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true -- break at word boundaries
+  end,
+})
