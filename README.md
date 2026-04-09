@@ -71,7 +71,11 @@ Authenticate after first launch:
 
 ### Harper (grammar LSP)
 
-`harper_ls` is enabled by default. Install via Mason (`:MasonInstall harper-ls`) or it will be auto-installed.
+`harper_ls` is configured but **not auto-started** (too noisy). Start it manually when needed:
+
+```
+:LspStart harper_ls
+```
 
 ---
 

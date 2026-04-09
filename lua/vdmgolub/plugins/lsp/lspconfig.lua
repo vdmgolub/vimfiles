@@ -123,11 +123,11 @@ return {
       })
       vim.lsp.enable("postgres_lsp")
 
+      -- harper_ls: disabled auto-start (too noisy); enable manually with :LspStart harper_ls
       vim.lsp.config("harper_ls", {
         capabilities = capabilities,
         on_attach = on_attach,
       })
-      vim.lsp.enable("harper_ls")
 
       -- configure sqlls server
       vim.lsp.config("sqls", {
