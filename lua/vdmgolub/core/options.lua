@@ -41,6 +41,9 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- Increase treesitter highlight timeout for complex TS/TSX files
+vim.g.ts_highlight_timeout = 2000
+
 --- Save all changes if focus lost
 -- vim.cmd("au FocusLost * :wa")
 vim.cmd("au BufLeave * silent! wall")
