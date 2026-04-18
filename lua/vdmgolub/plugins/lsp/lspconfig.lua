@@ -11,6 +11,12 @@ return {
       local on_attach = lsp.on_attach
       local capabilities = lsp.capabilities()
 
+      vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+      vim.keymap.set("n", "<leader>lc", function()
+        vim.cmd("Copilot restart")
+        vim.notify("Copilot restarted", vim.log.levels.INFO)
+      end, { desc = "Restart Copilot" })
+
       vim.api.nvim_create_user_command("LspRestart", function()
         for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
           client:stop()
